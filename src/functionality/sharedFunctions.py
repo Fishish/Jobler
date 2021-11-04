@@ -32,9 +32,11 @@ def checkFrequency(jobList):
         else:
             orzJobList[x] = 1
 
-    orzJobList = sorted(orzJobList.items(), key=lambda item: item[1], reverse=True)
     return orzJobList
 
+# def sortJobs(jobList):
+#     jobList = sorted(jobList.items(), key=lambda item: item[1], reverse=True)
+#     return jobList
 def checkPage(html, pattern):
     # print(re.search(pattern, url))
     # if re.search(pattern, url):

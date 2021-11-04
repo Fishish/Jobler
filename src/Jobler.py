@@ -1,5 +1,6 @@
 from src.functionality.outputFile import create_data_directory, create_company_directory, create_csv_file, get_today
 from src.functionality.sharedFunctions import checkList, checkFrequency, checkPage, retriveJobsUrl, getHTML, retriveJobsHtml
+import time
 
 studioList = {
                 "Blizzard" : "https://careers.blizzard.com/global/en/search-results?keywords=Test",
@@ -16,7 +17,7 @@ pageCheckList = {
                 "Activision" : 0,
                 "EA" : "\"alert alert-error empty-text \""
               }
-keyWords = ["Test", "Quality"]
+keyWords = ["Test"]
 
 def initialize():
     create_data_directory()
@@ -32,9 +33,7 @@ def run():
             rawjobs = retriveJobsUrl(studioList[s], patternList[s])
             unsortedjobs = checkList(keyWords, rawjobs)
             tempList = checkFrequency(unsortedjobs)
-            if(s == "Activision"):
-                print("the accc")
-                print(tempList)
+            tempList = sorted(tempList.items(), key=lambda item: item[1], reverse=True)
             jobList[s] = tempList
         else:
             i = 1
@@ -48,6 +47,8 @@ def run():
                 tempHtml = getHTML(studioList[s] + str(i))
             unsortedjobs = checkList(keyWords, totalList)
             tempList = checkFrequency(unsortedjobs)
+            tempList = sorted(tempList.items(), key=lambda item: item[1], reverse=True)
+
             jobList[s] = tempList
         create_csv_file(s, jobList[s], today)
 
