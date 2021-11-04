@@ -27,12 +27,9 @@ def create_csv_file(company, jobList, date):
         fieldnames = ['Job', 'Frequency']
         writer = csv.DictWriter(new_file, fieldnames=fieldnames)
         writer.writeheader()
-        print(jobList)
+        print("file Writing " + str(jobList))
         for job in jobList:
-            for i in job:
-                print(i)
-                print(job[i])
-                writer.writerow({'Job': i, 'Frequency': job[i]})
+            writer.writerow({'Job': job[0], 'Frequency': job[1]})
         #
         #
         # csvwriter = csv.writer(new_file, delimiter=",")

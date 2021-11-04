@@ -32,6 +32,9 @@ def run():
             rawjobs = retriveJobsUrl(studioList[s], patternList[s])
             unsortedjobs = checkList(keyWords, rawjobs)
             tempList = checkFrequency(unsortedjobs)
+            if(s == "Activision"):
+                print("the accc")
+                print(tempList)
             jobList[s] = tempList
         else:
             i = 1
